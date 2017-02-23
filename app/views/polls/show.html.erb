@@ -1,0 +1,37 @@
+<h1><%= @poll.title %></h1>
+
+<% if @user.admin? %>
+	<%= link_to("Add a question", new_poll_question_path(@poll)) %></br></br>
+<% end %>
+
+<% unless @user.answers.where(poll_id: @poll.id).first %>
+	<div id='choice_form'>
+		<%= form_tag({controller: "polls", action: "save"}, method: :put) do %>	
+			<% @poll.questions.each do |q| %>
+				<%= radio_button_tag "choice", q.statement %>
+				<%= q.statement %>
+				<% if @user.admin? %>
+					<%= link_to "Edit", edit_poll_question_path(@poll, q) %>
+
+					<%= link_to "Delete", poll_question_path(@poll, q), method: "delete", data: {:confirm=>"Are you sure you want to delete? "} %>
+				<% end %>
+				</br>
+			<% end %>
+			<%= submit_tag("Save") %>
+		<% end %>
+	</div>
+	<div id='show_result' style='display:none'>
+		<%= render :partial => "result" %>
+	</div>
+<% else %>
+	<strong>Voted</strong>
+	<%= render :partial => "result" %>
+<% end %>
+
+<script type="text/javascript">
+	setTimeout(function(){
+	     $('#choice_form').slideUp('slow').fadeOut(function(){
+	     	$('#show_result').slideUp('slow').show()
+	     });
+	}, 5000);
+</script>

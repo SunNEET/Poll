@@ -1,0 +1,5 @@
+<%= form_for @question, :url => {:controller=>"questions", :action => "update", :poll_id => @poll.id, :id => @question.id}, :method => :patch do |q| %>
+    <%= q.label :statement, "Statement: " %>
+    <%= q.text_field :statement %>
+    <%= q.submit %>
+<% end %>

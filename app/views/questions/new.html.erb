@@ -1,0 +1,5 @@
+<%= form_for(@question, :url => {:controller=>"questions" , :action => "create"}) do |q| %>
+	<%= q.label :statement, "Statement: " %>
+	<%= q.text_field :statement %>
+	<%= q.submit %>
+<% end %>

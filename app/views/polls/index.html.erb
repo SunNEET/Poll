@@ -1,0 +1,19 @@
+<h1>Polls list</h1>
+<% @polls.each do |p| %>
+	<table>
+		<tr>
+			<td><%= link_to p.title, poll_path(p) %> </td>
+            <% if @user.admin? %>
+			<td><%= link_to "Delete", poll_path(p), method: "delete",data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+		</tr>
+	</table>
+<% end %>
+<% if @polls.size == 0 %>
+	<em>No polls found</em>
+<% end %>
+
+<% if @user.admin? %>
+    </br>
+    <%= link_to "Create a new Poll", new_poll_path %>
+<% end %>

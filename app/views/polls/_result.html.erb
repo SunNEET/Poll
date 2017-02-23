@@ -1,0 +1,11 @@
+<div id='result'>
+    <h2>Result</h2>
+    <% @poll.questions.each do |q| %>
+        <p><%= q.statement + ":" + @answers.where(question_id: q.id).size.to_s %></p>
+        <p>
+        <% q.users.includes(:answers).where('answers.poll_id = ?', @poll.id).each do |u| %>
+            <%= u.email %>
+        <% end %>
+        </p>
+    <% end %>
+</div>
