@@ -1,7 +1,7 @@
 FactoryGirl.define do 
 
   factory :poll do
-    title "Test_Poll"
+    title Faker::Hacker.noun
   end
 
 end
