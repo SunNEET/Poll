@@ -48,12 +48,6 @@ class PollsController < ApplicationController
 		end
 	end
 
-	def edit
-	end
-
-	def update
-	end
-
 	private 
 	def poll_params
    	params.require(:poll).permit(:title)
