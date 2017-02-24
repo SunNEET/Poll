@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
 
 	def create
 		@poll = Poll.find(params[:poll_id])
-		@question = @poll.questions.create(param_event)
+		@question = @poll.questions.create(question_param)
 
 		if @question.save
 			redirect_to(poll_path(@poll))
@@ -24,7 +24,7 @@ class QuestionsController < ApplicationController
 	def update
 		@poll = Poll.find(params[:poll_id])
 		@question = Question.find(params[:id])
-		@question.update(param_event)
+		@question.update(question_param)
 		if @question.save
 			redirect_to(poll_path(@poll))
 		else
@@ -41,7 +41,7 @@ class QuestionsController < ApplicationController
 
 	private
 
-	def param_event
+	def question_param
 		params.require(:question).permit(:statement)
 	end
 

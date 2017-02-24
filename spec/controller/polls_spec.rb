@@ -56,7 +56,7 @@ describe PollsController, type: :controller do
     let!(:poll) { FactoryGirl.create(:poll) }
 
     it "deletes the record" do 
-      expect{ delete :destroy, params: { id: poll.id, } }.to change{ Poll.all.size }.by(-1)
+      expect{ delete :destroy, params: { id: poll.id } }.to change{ Poll.all.size }.by(-1)
     end
 
     it "redirects to index after destroy" do 
