@@ -4,7 +4,7 @@ describe PollsController, type: :controller do
 
   login_admin
 
-  let(:poll) { Poll.create(title: "Test_Poll") }
+  let(:poll) { FactoryGirl.create(:poll) }
 
   describe '#index' do
     it 'shows the index' do
@@ -53,7 +53,7 @@ describe PollsController, type: :controller do
   end
 
   describe "#destroy" do 
-    let!(:poll) { Poll.create(title: "Test_Poll") }
+    let!(:poll) { FactoryGirl.create(:poll) }
 
     it "deletes the record" do 
       expect{ delete :destroy, params: { id: poll.id, } }.to change{ Poll.all.size }.by(-1)
@@ -67,7 +67,7 @@ describe PollsController, type: :controller do
   end
 
   describe "#save" do 
-    let(:question) { poll.questions.create(statement: "Q1") }
+    let(:question) { FactoryGirl.create(:question, poll: poll) }
 
     it "saves the answer" do
       expect{ post :save, params: { id: poll.id, choice: question.statement  } }.to change{ Answer.all.size }.by(1)
