@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'answer'
 
 describe Answer, type: :model do
 
