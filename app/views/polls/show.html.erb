@@ -30,8 +30,8 @@
 
 <script type="text/javascript">
 	setTimeout(function(){
-	     $('#choice_form').slideUp('slow').fadeOut(function(){
-	     	$('#show_result').slideUp('slow').show()
-	     });
+		$('#show_result').slideUp('slow').show(function(){
+			$('#choice_form').slideUp('slow').fadeOut()
+		});
 	}, 10000);
 </script>
