@@ -6,7 +6,7 @@
 
 <% unless @user.answers.where(poll_id: @poll.id).first %>
 	<div id='choice_form'>
-		<%= form_tag({controller: "polls", action: "save"}, method: :put) do %>	
+		<%= form_tag({controller: "polls", action: "save", id: @poll.id}, method: :put) do %>	
 			<% @poll.questions.each do |q| %>
 				<%= radio_button_tag "choice", q.statement %>
 				<%= q.statement %>
@@ -33,5 +33,5 @@
 	     $('#choice_form').slideUp('slow').fadeOut(function(){
 	     	$('#show_result').slideUp('slow').show()
 	     });
-	}, 5000);
+	}, 10000);
 </script>

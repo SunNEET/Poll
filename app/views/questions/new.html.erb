@@ -1,4 +1,4 @@
-<%= form_for(@question, :url => {:controller=>"questions" , :action => "create"}) do |q| %>
+<%= form_for(@question, url: { controller: "questions", action: "create", poll_id: @poll.id } ) do |q| %>
 	<%= q.label :statement, "Statement: " %>
 	<%= q.text_field :statement %>
 	<%= q.submit %>
