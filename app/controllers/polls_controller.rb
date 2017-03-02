@@ -1,5 +1,7 @@
 class PollsController < ApplicationController
 	before_action :authenticate_user!
+	before_action :no_auth, only: [:new, :create, :destroy]
+
 
 	def index
 		@polls = Poll.all
@@ -16,6 +18,7 @@ class PollsController < ApplicationController
 
 	def new
 		@poll = Poll.new
+		render action: :new
 	end
 
 	def create
@@ -51,6 +54,12 @@ class PollsController < ApplicationController
 	private 
 	def poll_params
    	params.require(:poll).permit(:title)
+  end
+
+  def no_auth
+  	unless current_user.admin?
+  		redirect_to root_path
+  	end
   end
 
 end
