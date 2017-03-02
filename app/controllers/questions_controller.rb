@@ -3,6 +3,7 @@ class QuestionsController < ApplicationController
 
 	def new
 		@question = Question.new
+		@poll = Poll.find(params[:poll_id])
 	end
 
 	def create
