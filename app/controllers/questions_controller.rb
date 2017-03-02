@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
 	before_action :authenticate_user!
+	before_action :no_auth
 
 	def new
 		@question = Question.new
@@ -45,5 +46,11 @@ class QuestionsController < ApplicationController
 	def question_param
 		params.require(:question).permit(:statement)
 	end
+
+	def no_auth
+  	unless current_user.admin?
+  		redirect_to root_path
+  	end
+  end
 
 end
