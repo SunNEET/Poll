@@ -2,7 +2,8 @@
 實作一個投票系統來練習Rails的基本觀念，使用：
 - Devise做用戶系統
 - Rspec做測試
-- Factory Girl做測資
+- FactoryGirl做測資
+
 註冊系統只能生出一般user，要生出有admin權限的需要直接進rails console去新增user(將admin設為true)
 
 ## Admin
